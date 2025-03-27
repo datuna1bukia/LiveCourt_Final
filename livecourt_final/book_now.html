@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" data-language="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Stadium - LiveCourt</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .booking-form {
+            background-color: #f5f5f5;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px 0;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .booking-form {
+                padding: 20px;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.75rem;
+            }
+
+            input, select {
+                padding: 10px;
+            }
+
+            button[type="submit"] {
+                padding: 12px 24px;
+            }
+        }
+
+        /* Footer styles from about.html */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        [data-language="ka"] [data-en],
+        [data-language="en"] [data-ka] {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            background-color: var(--primary-color-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .book-now-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Updated Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="assets/img/livecourt.png" alt="LiveCourt Logo">
+                LiveCourt
+            </a>
+            <div class="nav-links">
+                <a href="stadiums.html">
+                    <span data-en>Stadiums</span>
+                    <span data-ka>სტადიონები</span>
+                </a>
+                <a href="match-analytics.html">
+                    <span data-en>Analytics</span>
+                    <span data-ka>ანალიტიკა</span>
+                </a>
+                <a href="player-profile.html">
+                    <span data-en>Players</span>
+                    <span data-ka>მოთამაშეები</span>
+                </a>
+                <a href="about.html">
+                    <span data-en>About</span>
+                    <span data-ka>შესახებ</span>
+                </a>
+                <a href="contact.html">
+                    <span data-en>Contact</span>
+                    <span data-ka>კონტაქტი</span>
+                </a>
+                <div class="language-switcher">
+                    <button class="language-btn" onclick="switchLanguage('en')">EN</button>
+                    <span>|</span>
+                    <button class="language-btn" onclick="switchLanguage('ka')">KA</button>
+                </div>
+                <a href="dashboard.html" class="btn-primary hover-lift">
+                    <span data-en>Dashboard</span>
+                    <span data-ka>დაფა</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">
+                <span data-en>Book Your Stadium</span>
+                <span data-ka>დაჯავშნე სტადიონი</span>
+            </h1>
+            
+            <div class="booking-form">
+                <form id="stadiumBookingForm">
+                    <div class="form-group">
+                        <label for="stadium">
+                            <span data-en>Select Stadium:</span>
+                            <span data-ka>აირჩიეთ სტადიონი:</span>
+                        </label>
+                        <select id="stadium" name="stadium" required>
+                            <option value="">
+                                <span data-en>Choose a stadium...</span>
+                                <span data-ka>აირჩიეთ სტადიონი...</span>
+                            </option>
+                            <option value="stadium1">დინამო არენა</option>
+                            <option value="stadium2">ბათუმის სტადიონი</option>
+                            <option value="stadium3">მიხეილ მესხის სტადიონი</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">
+                            <span data-en>Select Date:</span>
+                            <span data-ka>აირჩიეთ თარიღი:</span>
+                        </label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">
+                            <span data-en>Select Time:</span>
+                            <span data-ka>აირჩიეთ დრო:</span>
+                        </label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration">
+                            <span data-en>Duration (hours):</span>
+                            <span data-ka>დროის ხანგრძლივობა (საათებშ):</span>
+                        </label>
+                        <select id="duration" name="duration" required>
+                            <option value="1">1 hour</option>
+                            <option value="2">2 hours</option>
+                            <option value="3">3 hours</option>
+                            <option value="4">4 hours</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">
+                            <span data-en>Your Name:</span>
+                            <span data-ka>თქვენი სახელი:</span>
+                        </label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span data-en>Email:</span>
+                            <span data-ka>ელ-ფოსტა:</span>
+                        </label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">
+                            <span data-en>Phone Number:</span>
+                            <span data-ka>ტელეფონის ნომერი:</span>
+                        </label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <button type="submit">
+                        <span data-en>Confirm Booking</span>
+                        <span data-ka>დაჯავშნის დადასტურება</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Updated Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="/" class="footer-logo">
+                        <img src="assets/img/livecourt.png" alt="LiveCourt Logo">
+                        LiveCourt
+                    </a>
+                    <p>
+                        <span data-en>Making sports accessible to everyone</span>
+                        <span data-ka>სპორტი ხელმისაწვდომია ყველასთვის</span>
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>
+                        <span data-en>Quick Links</span>
+                        <span data-ka>სწრაფი ბმულები</span>
+                    </h4>
+                    <a href="stadiums.html">
+                        <span data-en>Stadiums</span>
+                        <span data-ka>სტადიონები</span>
+                    </a>
+                    <a href="match-analytics.html">
+                        <span data-en>Analytics</span>
+                        <span data-ka>ანალიტიკა</span>
+                    </a>
+                    <a href="about.html">
+                        <span data-en>About</span>
+                        <span data-ka>შესახებ</span>
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h4>
+                        <span data-en>Contact</span>
+                        <span data-ka>კონტაქტი</span>
+                    </h4>
+                    <a href="contact.html">
+                        <span data-en>Get in touch</span>
+                        <span data-ka>დაგვიკავშირდით</span>
+                    </a>
+                    <a href="#">
+                        <span data-en>Support</span>
+                        <span data-ka>მხარდაჭერა</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span data-en>&copy; 2024 LiveCourt. All rights reserved.</span>
+                    <span data-ka>&copy; 2024 LiveCourt. ყველა უფლება დაცულია.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add the translations script -->
+    <script src="assets/js/translations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get stadium from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedStadium = urlParams.get('stadium');
+            
+            // If stadium parameter exists, select it in the dropdown
+            if (selectedStadium) {
+                const stadiumSelect = document.getElementById('stadium');
+                stadiumSelect.value = selectedStadium;
+            }
+
+            // ... rest of your existing DOMContentLoaded code ...
+        });
+
+        document.getElementById('stadiumBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For now, we'll just show an alert
+            alert('Booking submitted successfully! We will contact you shortly to confirm your reservation.');
+            
+            // Optional: Reset the form
+            this.reset();
+        });
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+
+        // Language handling
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('language') || 'en';
+            document.documentElement.setAttribute('data-language', savedLanguage);
+            updateActiveLanguageButton(savedLanguage);
+        });
+    </script>
+</body>
+</html>
